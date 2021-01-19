@@ -78,7 +78,8 @@ export default ({
         </form>
         }
     </Form>
-    <StateChanger>
+    {action !== 'confirm' && (
+      <StateChanger>
       {action === "logIn" ? (
         <>
           Don't have an account?{" "}
@@ -90,6 +91,6 @@ export default ({
           <Link onClick={() => setAction("logIn")}>Log in</Link>
         </>
       )}
-    </StateChanger>
+    </StateChanger>)}
   </Wrapper>
 );

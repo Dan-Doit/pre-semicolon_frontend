@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import AuthPresenter from "./AuthPresenter";
 import useInput from "../../Hooks/useInput";
 import { useMutation } from "react-apollo-hooks";
-import { LOG_IN, CREATE_ACCOUNT } from "./AuthQueries";
+import { LOG_IN, CREATE_ACCOUNT, CONFIRM_SECRET, LOG_USER_IN } from "./AuthQueries";
 import { toast } from "react-toastify";
 
 export default () => {
@@ -11,7 +11,7 @@ export default () => {
   const firstName = useInput("");
   const secret = useInput("");
   const lastName = useInput("");
-  const email = useInput("kdh@asdasd.com");
+  const email = useInput("");
   const [requestSecretMutation] = useMutation(LOG_IN, {
     variables: { email: email.value }
   });
@@ -24,6 +24,17 @@ export default () => {
     }
   });
 
+  const [confirmSecretMutation] = useMutation(CONFIRM_SECRET, {
+    variables: {
+      email: email.value,
+      secret: secret.value
+    }
+  });
+
+  const [logUserInMutation] = useMutation(LOG_USER_IN)
+
+
+
   const onSubmit = async e => {
     e.preventDefault();
     if (action === "logIn") {
@@ -31,17 +42,17 @@ export default () => {
         try {
           const { data: { requestSecret } } = await requestSecretMutation();
           if (!requestSecret) {
-            toast.error("You dont have an account yet, create one");
+            toast.error("Woops!, 등록된 정보가 없어요! 회원가입으로 안내해 드릴게요!");
             setTimeout(() => setAction("signUp"), 3000);
-          } else { 
+          } else {
             toast.success('이메일함에서 시크릿 코드를 확인해주세요!')
             setAction('confirm');
           }
         } catch {
-          toast.error("Can't request secret, try again");
+          toast.error("Woops!, 다시 시도해주세요!");
         }
       } else {
-        toast.error("Email is required");
+        toast.error("이메일은 반드시 작성해야해요!");
       }
     } else if (action === "signUp") {
       if (
@@ -62,7 +73,20 @@ export default () => {
           toast.error(e.message);
         }
       } else {
-        toast.error("All field are required");
+        toast.error("모든 양식을 작성해 주세요!");
+      }
+    } else if (action === "confirm") { 
+      if (secret.value !== "") { 
+        try {
+          const { data: { confirmSecret: token } } = await confirmSecretMutation();
+          if (token !== "" && token !== undefined) {
+            await logUserInMutation({ variables: { token } });
+          } else {
+            throw Error();
+          } 
+        } catch { 
+          toast.error('Woops! 비밀코드가 일치하지 않아요!');
+        }
       }
     }
   };
