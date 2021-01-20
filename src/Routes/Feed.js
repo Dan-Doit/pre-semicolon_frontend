@@ -31,6 +31,7 @@ const FEED_QUERY = gql`
         username
       }
     }
+    createdAt
   }
 }
 `;
@@ -46,18 +47,20 @@ const Wrapper = styled.div`
 
 export default () => {
     const { data, loading } = useQuery(FEED_QUERY);
-    console.log(data);
     return <Wrapper>{loading && <Loader />}
-        {!loading && data && data.seeFeed && data.seeFeed.map(post => (
-            <Post
-                key={post.id}
-                id={post.id}
-                user={post.user}
-                files={post.files}
-                likeCount={post.likeCount}
-                isLiked={post.isLiked}
-                comments={post.comments}
-                createdAt={post.createdAt}
-            />))}
+      {!loading && data && data.seeFeed && data.seeFeed.map(post => {
+        return (
+          <Post
+            key={post.id}
+            id={post.id}
+            user={post.user}
+            files={post.files}
+            caption={post.caption}
+            likeCount={post.likeCount}
+            isLiked={post.isLiked}
+            comments={post.comments}
+            createdAt={post.createdAt}
+          />)
+      })}
         </Wrapper>;
 };
