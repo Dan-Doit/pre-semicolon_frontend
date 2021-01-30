@@ -7,6 +7,7 @@ import useInput from "../Hooks/useInput";
 import { Compass, HeartEmpty, User, Logo } from "./Icons";
 import { useQuery } from "react-apollo-hooks";
 import { ME } from "../SharedQueries";
+import Weather from "./Weather";
 
 const Header = styled.header`
   width: 100%;
@@ -64,14 +65,17 @@ const HeaderLink = styled(Link)`
   }
 `;
 
+
+
+
 export default withRouter (({history}) => {
     const search = useInput("");
     const { data } = useQuery(ME);
     const onSearchSubmit = e => {
         e.preventDefault();
         history.push(`/search?term=${search.value}`);
-    };
-    console.log(data)
+  };
+
   return (
     <Header>
       <HeaderWrapper>
@@ -79,6 +83,7 @@ export default withRouter (({history}) => {
           <Link to="/">
             <Logo />
           </Link>
+      
         </HeaderColumn>
         <HeaderColumn>
           <form onSubmit={onSearchSubmit}>

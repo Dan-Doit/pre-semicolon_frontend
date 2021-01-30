@@ -11,3 +11,12 @@ export const ME = gql`
         }
     }
 `;
+// 날씨
+export const GET_WEATHER = gql`
+  query weather($latitude: Float! , $longitude:Float!) {
+    weather(latitude: $latitude, longitude:$longitude){
+        temp 
+        weather
+        }
+    }
+`;
