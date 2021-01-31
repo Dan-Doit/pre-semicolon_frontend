@@ -13,6 +13,7 @@ const Text = styled.span`
   font-weight: 600;
 `;
 
+
 const weatherOption = (weather, temp) => {
     if (weather === "Clear") return <><IoSunnyOutline size={30} /><Text>{temp}°</Text></>
     else if (weather === "Thunderstorm") return <><RiThunderstormsLine size={30} /><Text>{temp}°</Text></>
@@ -26,7 +27,7 @@ const weatherOption = (weather, temp) => {
     else return <><IoPartlySunnyOutline size={30} /><Text>{temp}°</Text></>
 }
 
-export const Weather = ({ temp, weather }) => {
+export const Weather = ({ temp="10.1", weather="Clear" }) => {
     return weatherOption(weather,parseInt(temp))
 };
 

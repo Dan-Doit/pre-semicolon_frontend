@@ -15,7 +15,6 @@ const GET_WEATHER = gql`
     }
 `;
 
-
 export default withRouter(() => {
     const { data, loading } = useQuery(GET_WEATHER, {
         variables: {
