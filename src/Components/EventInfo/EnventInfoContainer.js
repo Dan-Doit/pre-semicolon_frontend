@@ -1,27 +1,31 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { EventCovid, EventWeather} from "./EventInfoPresenter";
+import { EventInfo } from "./EventInfoPresenter";
 
 const EnventInfoContainer = ({ location, data, temp, weather }) => {
     const [state, setState] = useState("weather");
+    
     const changeData = () => {
         if (state === "weather") {
             setTimeout(() => {
-                // translate 구현
+                document.getElementById("weather").classList.add('minus');
+                document.getElementById("weather").classList.remove('plus');
                 setState("covid")
-            }, 30000);
+            }, 5000);
         } else if (state === "covid") {
             setTimeout(() => {
-                // translate 구현
+                document.getElementById("weather").classList.add('plus');
+                document.getElementById("weather").classList.remove('minus');
                 setState("weather")
-            }, 30000);
+            }, 5000);
         }
     }
+
     useEffect(() => {
         changeData();
-    }, [state]);
+    },[state])
  
-    return state === "weather" ? <EventWeather temp={temp} weather={weather} /> : <EventCovid location={location} data={data} />;
+    return <EventInfo location={location} data={data} temp={temp} weather={weather} />;
 };
 
 EnventInfoContainer.propTypes = {

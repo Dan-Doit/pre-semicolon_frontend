@@ -13,17 +13,20 @@ const Text = styled.span`
   font-weight: 600;
 `;
 
+const Div = styled.div`
+`;
+
 const weatherOption = (weather, temp) => {
-    if (weather === "Clear") return <><IoSunnyOutline size={30} /><Text> {temp}°</Text></>
-    else if (weather === "Thunderstorm") return <><RiThunderstormsLine size={30} /><Text> {temp}°</Text></>
-    else if (weather === "Drizzle") return <><RiDrizzleLine size={30} /><Text> {temp}°</Text></>
-    else if (weather === "Rain") return <><IoRainyOutline size={30} /><Text> {temp}°</Text></>
-    else if (weather === "Snow") return <><IoIosSnow size={30} /><Text> {temp}°</Text></>
-    else if (weather === "Clouds") return <><BsCloud size={30} /><Text> {temp}°</Text></>
-    else if (weather === "Mist") return <><BiWater size={30} /><Text> {temp}°</Text></>
-    else if (weather === "Dust") return <><WiSandstorm size={30} /><Text> {temp}°</Text></>
-    else if (weather === "Haze") return <><RiHazeLine size={30} /><Text> {temp}°</Text></>
-    else return <><IoPartlySunnyOutline size={30} /><Text> {temp}°</Text></>
+    if (weather === "Clear") return <Div><IoSunnyOutline size={30} /><Text> {temp}°</Text></Div>
+    else if (weather === "Thunderstorm") return <Div><RiThunderstormsLine size={30} /><Text> {temp}°</Text></Div>
+    else if (weather === "Drizzle") return <Div><RiDrizzleLine size={30} /><Text> {temp}°</Text></Div>
+    else if (weather === "Rain") return <Div><IoRainyOutline size={30} /><Text> {temp}°</Text></Div>
+    else if (weather === "Snow") return <Div><IoIosSnow size={30} /><Text> {temp}°</Text></Div>
+    else if (weather === "Clouds") return <Div><BsCloud size={30} /><Text> {temp}°</Text></Div>
+    else if (weather === "Mist") return <Div><BiWater size={30} /><Text> {temp}°</Text></Div>
+    else if (weather === "Dust") return <Div><WiSandstorm size={30} /><Text> {temp}°</Text></Div>
+    else if (weather === "Haze") return <Div><RiHazeLine size={30} /><Text> {temp}°</Text></Div>
+    else return <Div><IoPartlySunnyOutline size={30} /><Text> {temp}°</Text></Div>
 }
 
 export const Weather = ({ temp="10.1", weather="Clear" }) => {

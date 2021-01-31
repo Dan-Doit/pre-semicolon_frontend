@@ -34,7 +34,6 @@ const HeaderWrapper = styled.div`
 
 const HeaderColumn = styled.div`
   width: 33%;
-  display: flex;
   text-align: center;
   &:first-child {
     margin-right: auto;
@@ -95,7 +94,7 @@ export default withRouter(({ history }) => {
     <Header>
       <HeaderWrapper>
         <HeaderColumn>
-          <Link to="/" style={{ marginRight:30}}>
+          <Link to="/" style={{ marginRight: 30 }}>
             <Logo />
           </Link>
           {weatherData && covidData && <EnventInfoContainer location={"인천"} data={covidData.covid19} temp={weatherData.weather.temp} weather={weatherData.weather.weather} />}
