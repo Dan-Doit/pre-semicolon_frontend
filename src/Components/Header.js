@@ -7,8 +7,7 @@ import useInput from "../Hooks/useInput";
 import { Compass, HeartEmpty, User, Logo } from "./Icons";
 import { useQuery } from "react-apollo-hooks";
 import { ME, GET_WEATHER, GET_COVID } from "../SharedQueries";
-import Weather from "./Weather";
-import Covid from "./Covid";
+import EnventInfoContainer from "../Components/EventInfo";
 
 const Header = styled.header`
   width: 100%;
@@ -35,6 +34,7 @@ const HeaderWrapper = styled.div`
 
 const HeaderColumn = styled.div`
   width: 33%;
+  display: flex;
   text-align: center;
   &:first-child {
     margin-right: auto;
@@ -78,19 +78,19 @@ export default withRouter(({ history }) => {
         history.push(`/search?term=${search.value}`);
   };
   
-  const { data:weatherData, loading:weatherLoding } = useQuery(GET_WEATHER, {
+  const { data:weatherData } = useQuery(GET_WEATHER, {
         variables: {
             latitude: 37.4111,
             longitude: 126.7111
         }
   });
 
-  const { data: covidData, loading: covidLoding } = useQuery(GET_COVID, {
+  const { data: covidData } = useQuery(GET_COVID, {
     variables: {
       location: "incheon"
     }
   });
-  console.log(covidData)
+
   return (
     <Header>
       <HeaderWrapper>
@@ -98,8 +98,7 @@ export default withRouter(({ history }) => {
           <Link to="/" style={{ marginRight:30}}>
             <Logo />
           </Link>
-          {weatherLoding ? null : <Weather temp={weatherData.weather.temp} weather={weatherData.weather.weather} />}
-          {covidLoding ? null : <Covid location={"인천"} data={covidData.covid19} />}
+          {weatherData && covidData && <EnventInfoContainer location={"인천"} data={covidData.covid19} temp={weatherData.weather.temp} weather={weatherData.weather.weather} />}
         </HeaderColumn>
         <HeaderColumn>
           <form onSubmit={onSearchSubmit}>

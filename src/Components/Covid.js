@@ -10,7 +10,6 @@ const Text = styled.span`
 
 
 export const Covid = ({ location='인천', data='0' }) => {
-    console.log(location, data);
     return <><RiVirusLine size={30}/> <Text>{location} {data}</Text></>
 };
 

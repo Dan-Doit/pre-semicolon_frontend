@@ -13,18 +13,17 @@ const Text = styled.span`
   font-weight: 600;
 `;
 
-
 const weatherOption = (weather, temp) => {
-    if (weather === "Clear") return <><IoSunnyOutline size={30} /><Text>{temp}°</Text></>
-    else if (weather === "Thunderstorm") return <><RiThunderstormsLine size={30} /><Text>{temp}°</Text></>
-    else if (weather === "Drizzle") return <><RiDrizzleLine size={30} /><Text>{temp}°</Text></>
-    else if (weather === "Rain") return <><IoRainyOutline size={30} /><Text>{temp}°</Text></>
-    else if (weather === "Snow") return <><IoIosSnow size={30} /><Text>{temp}°</Text></>
-    else if (weather === "Clouds") return <><BsCloud size={30} /><Text>{temp}°</Text></>
-    else if (weather === "Mist") return <><BiWater size={30} /><Text>{temp}°</Text></>
-    else if (weather === "Dust") return <><WiSandstorm size={30} /><Text>{temp}°</Text></>
-    else if (weather === "Haze") return <><RiHazeLine size={30} /><Text>{temp}°</Text></>
-    else return <><IoPartlySunnyOutline size={30} /><Text>{temp}°</Text></>
+    if (weather === "Clear") return <><IoSunnyOutline size={30} /><Text> {temp}°</Text></>
+    else if (weather === "Thunderstorm") return <><RiThunderstormsLine size={30} /><Text> {temp}°</Text></>
+    else if (weather === "Drizzle") return <><RiDrizzleLine size={30} /><Text> {temp}°</Text></>
+    else if (weather === "Rain") return <><IoRainyOutline size={30} /><Text> {temp}°</Text></>
+    else if (weather === "Snow") return <><IoIosSnow size={30} /><Text> {temp}°</Text></>
+    else if (weather === "Clouds") return <><BsCloud size={30} /><Text> {temp}°</Text></>
+    else if (weather === "Mist") return <><BiWater size={30} /><Text> {temp}°</Text></>
+    else if (weather === "Dust") return <><WiSandstorm size={30} /><Text> {temp}°</Text></>
+    else if (weather === "Haze") return <><RiHazeLine size={30} /><Text> {temp}°</Text></>
+    else return <><IoPartlySunnyOutline size={30} /><Text> {temp}°</Text></>
 }
 
 export const Weather = ({ temp="10.1", weather="Clear" }) => {
