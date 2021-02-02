@@ -10,7 +10,7 @@ const Text = styled.span`
 
 
 export const Covid = ({ location='인천', data='0' }) => {
-    return <><RiVirusLine size={30}/> <Text>{location} {data}</Text></>
+    return <><RiVirusLine size={30}/> <Text>{location} {data}명</Text></>
 };
 
 Covid.propTypes = {

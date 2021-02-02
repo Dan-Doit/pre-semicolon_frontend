@@ -97,7 +97,7 @@ export default withRouter(({ history }) => {
           <Link to="/" style={{ marginRight: 30 }}>
             <Logo />
           </Link>
-          {weatherData && covidData && <EnventInfoContainer location={"인천"} data={covidData.covid19} temp={weatherData.weather.temp} weather={weatherData.weather.weather} />}
+          {weatherData && covidData && <EnventInfoContainer location={covidData.covid19.countryName} data={covidData.covid19.newCase} temp={weatherData.weather.temp} weather={weatherData.weather.weather} />}
         </HeaderColumn>
         <HeaderColumn>
           <form onSubmit={onSearchSubmit}>

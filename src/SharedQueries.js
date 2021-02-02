@@ -23,7 +23,10 @@ export const GET_WEATHER = gql`
 
 // 코로나
 export const GET_COVID = gql`
-    query covid19($location:String!){
-        covid19(location:$location)
+  query covid19($location:String!) {
+    covid19(location:$location){
+      countryName
+      newCase
+      }
     }
 `;
